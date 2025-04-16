@@ -1,6 +1,6 @@
 # 新闻真伪检测器 (Fake News Detector)
 
-预训练数据集来源[kaggle | Fake News Detection](https://www.kaggle.com/datasets/jainpooja/fake-news-detection)
+预训练数据集爬取自网络
 
 ## 代码大纲
 
