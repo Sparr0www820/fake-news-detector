@@ -1,4 +1,4 @@
-# 新闻真伪检测器 (Fake News Detector)
+# Fake News Detector
 
 预训练数据集爬取自网络
 
