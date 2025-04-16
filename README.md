@@ -136,9 +136,9 @@ fake-news-detector/
 3. **准备数据**:
 
    * 创建 `data/` 目录。
-   * 将 `Fake.csv`, `True.csv` (及可选的 `New_*.csv`) 放入 `data/`
-   * 确保 CSV 文件包含 `text` 列，使用 UTF-8 编码
-4. 数据集csv内部示例(总之就是需要title,text,subject,date这四列):
+   * 将 `Fake.csv`, `True.csv` (及可选的 `New_*.csv`) 放入 `data/`。
+   * 确保 CSV 文件包含 `text` 列，使用 UTF-8 编码。
+4. 数据集csv内部示例(总之就是title,text,subject,date这四列)(实际上只需要text这一列，别的三个其实可以不用):
 
    ```
 
