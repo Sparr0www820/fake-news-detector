@@ -73,7 +73,7 @@ python predict.py
 ```
 
 - Enter news text and press `Enter` to predict.
-- Enter `退出` to exit.
+- Enter `exit` to exit.
 
 ---
 
