@@ -11,7 +11,7 @@ from utils import clean_text
 def load_components():
     """加载保存好的向量化器和所有模型"""
     loaded_objects = {}
-    print("--- 开始加载模型和向量化器 ---")
+    print("开始加载模型和向量化器")
 
     # 加载向量化器
     vectorizer = None
@@ -70,7 +70,7 @@ def load_components():
 
 
     loaded_objects['models'] = loaded_models
-    print("--- 组件加载完成 ---")
+    print("组件加载完成")
     return loaded_objects
 
 def predict_news(news_text, loaded_components):
@@ -112,7 +112,7 @@ def predict_news(news_text, loaded_components):
         return
 
     # 3. 使用各个加载的模型进行预测
-    print("\n--- 新闻预测结果 ---")
+    print("\n新闻预测结果")
     has_prediction = False
     for name, model in models.items():
         try:
@@ -137,16 +137,16 @@ def predict_news(news_text, loaded_components):
         print("未能从任何已加载的模型获得预测结果。")
 
 
-# --- 主执行流程 ---
+# 主执行流程
 if __name__ == "__main__":
-    print("--- 新闻真伪预测程序启动 ---")
+    print("新闻真伪预测程序启动")
 
     # 1. 加载必要的组件
     components = load_components()
 
     if components and components.get('vectorizer') and components.get('models'):
         # 2. 进入手动测试模式
-        print("\n--- 进入手动测试模式 ---")
+        print("\n进入手动测试模式")
         print("输入新闻文本进行预测，输入 '退出' 来结束程序。")
         while True:
             try:
@@ -172,4 +172,4 @@ if __name__ == "__main__":
     else:
         print("\n必要组件加载失败，无法启动预测服务。请先运行 train.py 训练并保存模型。")
 
-    print("\n--- 预测程序执行完毕 ---")
+    print("\n预测程序执行完毕")
