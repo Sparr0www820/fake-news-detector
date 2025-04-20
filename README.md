@@ -156,7 +156,7 @@ fake-news-detector/
 2. **再训练 (可选)**: `python retrain.py` (更新 `models/` 中的模型，需先运行 train.py)
 3. **预测**: `python predict.py` (加载模型进行交互式预测，需先运行 train.py 或 retrain.py)
    * 输入新闻文本，按回车预测
-   * 输入 `退出` 结束
+   * 输入 `退出` 或 `exit` 结束
 
 ## 配置
 
