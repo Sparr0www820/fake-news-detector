@@ -147,17 +147,17 @@ if __name__ == "__main__":
     if components and components.get('vectorizer') and components.get('models'):
         # 2. 进入手动测试模式
         print("\n进入手动测试模式")
-        print("输入新闻文本进行预测，输入 '退出' 来结束程序。")
+        print("输入新闻文本进行预测，输入 '退出' 或 'exit' 来结束程序")
         while True:
             try:
                 news_input = input("\n请输入新闻文本: ")
                 # Strip input to handle empty lines or just spaces
                 news_input_stripped = news_input.strip()
-                if news_input_stripped.lower() == '退出':
-                    print("程序结束。")
+                if news_input_stripped.lower() == '退出' or news_input_stripped.lower() == 'exit':
+                    print("程序结束")
                     break
                 elif not news_input_stripped: # Handle empty input after stripping
-                    print("输入不能为空，请输入新闻文本或 '退出'。")
+                    print("输入不能为空，请输入新闻文本或 '退出' 或 'exit'")
                     continue
                 predict_news(news_input, components) # Pass original input for cleaning later
             except EOFError: # 处理 Ctrl+D 或其他文件结束符
@@ -168,8 +168,8 @@ if __name__ == "__main__":
                  break
             except Exception as e:
                 print(f"\n处理输入时发生未知错误: {e}")
-                print("请重试或输入 '退出' 结束。")
+                print("请重试或输入 '退出' 或 'exit' 结束")
     else:
-        print("\n必要组件加载失败，无法启动预测服务。请先运行 train.py 训练并保存模型。")
+        print("\n必要组件加载失败，无法启动预测服务。请先运行 train.py 训练并保存模型")
 
     print("\n预测程序执行完毕")
