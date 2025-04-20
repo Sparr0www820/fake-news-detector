@@ -14,7 +14,7 @@ from utils import clean_text
 def load_existing_components():
     """加载已保存的向量化器和所有模型"""
     loaded_objects = {}
-    print("--- 开始加载现有模型和向量化器 ---")
+    print("开始加载现有模型和向量化器")
 
     # 加载向量化器
     try:
@@ -56,7 +56,7 @@ def load_existing_components():
          return None
 
     loaded_objects['models'] = loaded_models
-    print("--- 现有组件加载完成 ---")
+    print("现有组件加载完成")
     return loaded_objects
 
 def load_and_prepare_new_data(new_fake_path, new_true_path):
@@ -155,7 +155,7 @@ def continue_training(loaded_components, new_data_df):
         print("错误：向量化器或模型未正确加载。")
         return
 
-    print("\n--- 开始使用新数据进行 Retraining ---")
+    print("\n开始使用新数据进行 Retraining")
 
     # 准备新数据的特征和标签
     X_new = new_data_df["text"]
@@ -180,7 +180,7 @@ def continue_training(loaded_components, new_data_df):
         print(f"新数据向量化失败: {e}")
         return
 
-    # --- Retrain 每个加载成功的模型 ---
+    # Retrain 每个加载成功的模型
     retrained_models = {}
     model_save_paths = { # 从 config 获取保存路径
         "逻辑回归": config.LR_MODEL_PATH,
@@ -190,14 +190,14 @@ def continue_training(loaded_components, new_data_df):
     }
 
     for name, model in models.items():
-        print(f"\n--- Retraining 模型: {name} ---")
+        print(f"\nRetraining 模型: {name}")
         try:
             # 注意：对于 scikit-learn 的标准分类器，再次调用 fit
             # 会使用新数据重新训练模型。
             model.fit(X_new_vec, y_new)
             print(f"{name} 模型已使用新数据进行 retraining。")
 
-            # --- 保存更新后的模型 ---
+            # 保存更新后的模型
             save_path = model_save_paths.get(name) # 获取模型保存路径
             if save_path:
                  print(f"正在保存更新后的 {name} 模型到: {save_path}")
@@ -210,13 +210,13 @@ def continue_training(loaded_components, new_data_df):
         except Exception as e:
             print(f"Retraining 或保存 {name} 模型时出错: {e}")
 
-    print("\n--- 所有可用模型的 Retraining 和保存完成 ---")
+    print("\n所有可用模型的 Retraining 和保存完成")
     loaded_components['models'] = retrained_models # 更新主字典中的模型
 
 
-# --- 主执行流程 ---
+# 主执行流程
 if __name__ == "__main__":
-    print("--- 开始执行 Retraining 脚本 ---")
+    print("开始执行 Retraining 脚本")
 
     # 1. 加载现有组件 (模型和向量化器)
     existing_components = load_existing_components()
@@ -230,11 +230,11 @@ if __name__ == "__main__":
             continue_training(existing_components, new_data)
 
             # 可选：在这里添加评估步骤
-            # print("\n--- Retraining 后评估 (可选) ---")
+            # print("\nRetraining 后评估 (可选)")
 
         else:
             print("\n未能加载或准备有效的新数据，Retraining 过程未在模型上执行。")
     else:
         print("\n未能加载现有模型或向量化器，Retraining 终止。")
 
-    print("\n--- Retraining 脚本执行完毕 ---")
+    print("\nRetraining 脚本执行完毕")

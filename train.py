@@ -88,7 +88,7 @@ def train_evaluate_and_save(df):
         evaluate = True
 
 
-    # --- 文本向量化 (TF-IDF) ---
+    # 文本向量化 (TF-IDF)
     print("开始进行 TF-IDF 向量化...")
     # 调整 min_df 可以过滤掉出现次数过少的词
     vectorizer = TfidfVectorizer(max_features=config.MAX_FEATURES, min_df=2)
@@ -105,12 +105,12 @@ def train_evaluate_and_save(df):
         print(f"TF-IDF 向量化时发生未知错误: {e}")
         return
 
-    # --- 保存向量化器 ---
+    # 保存向量化器
     print(f"正在保存 TF-IDF 向量化器到: {config.VECTORIZER_PATH}")
     joblib.dump(vectorizer, config.VECTORIZER_PATH)
     print("向量化器保存成功。")
 
-    # --- 初始化模型 ---
+    # 初始化模型
     models = {
         "逻辑回归": (LogisticRegression(random_state=config.RANDOM_SEED, max_iter=config.MAX_ITER_LR), config.LR_MODEL_PATH),
         "决策树": (DecisionTreeClassifier(random_state=config.RANDOM_SEED), config.DT_MODEL_PATH),
@@ -118,10 +118,10 @@ def train_evaluate_and_save(df):
         "随机森林": (RandomForestClassifier(random_state=config.RANDOM_SEED), config.RFC_MODEL_PATH)
     }
 
-    # --- 训练、评估和保存每个模型 ---
+    # 训练、评估和保存每个模型
     print("\n开始训练、评估和保存模型...")
     for name, (model, save_path) in models.items():
-        print(f"\n--- 训练模型: {name} ---")
+        print(f"\n训练模型: {name}")
         try:
             model.fit(xv_train, y_train)
         except Exception as e:
@@ -129,7 +129,7 @@ def train_evaluate_and_save(df):
             continue # 跳过这个模型
 
         if evaluate:
-            print(f"--- 评估模型: {name} ---")
+            print(f"评估模型: {name}")
             try:
                 predictions = model.predict(xv_test)
                 accuracy = accuracy_score(y_test, predictions)
@@ -145,7 +145,7 @@ def train_evaluate_and_save(df):
             except Exception as e:
                 print(f"评估 {name} 模型时出错: {e}")
 
-        # --- 保存模型 ---
+        # 保存模型
         print(f"正在保存 {name} 模型到: {save_path}")
         try:
             joblib.dump(model, save_path)
@@ -154,11 +154,11 @@ def train_evaluate_and_save(df):
              print(f"保存 {name} 模型时出错: {e}")
 
 
-    print("\n--- 所有模型训练、评估和保存完成 ---")
+    print("\n所有模型训练、评估和保存完成")
 
-# --- 主执行流程 ---
+# 主执行流程
 if __name__ == "__main__":
-    print("--- 开始执行训练脚本 ---")
+    print("开始执行训练脚本")
 
     # 1. 加载和准备数据
     prepared_data = load_and_prepare_training_data(config.FAKE_CSV_PATH, config.TRUE_CSV_PATH)
@@ -169,4 +169,4 @@ if __name__ == "__main__":
     else:
         print("\n数据加载或准备失败，训练终止。")
 
-    print("\n--- 训练脚本执行完毕 ---")
+    print("\n训练脚本执行完毕")
