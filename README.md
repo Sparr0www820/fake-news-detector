@@ -131,7 +131,7 @@ fake-news-detector/
 
 ## 安装与设置
 
-1. **克隆/下载项目**: `git clone <url>` 或下载 ZIP
+1. **克隆/下载项目**: `git clone https://github.com/spawner1145/fake-news-detector` 或下载 ZIP
 2. **安装依赖**: `pip install pandas numpy scikit-learn joblib` (推荐在虚拟环境中)
 3. **准备数据**:
 
